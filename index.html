@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cozy Home</title>
+<style>
+:root{--p:#2c2c2c;--a:#b07d62;--bg:#fff;--soft:#f7f4f1;--lt:#efe9e3;--tx:#333;--mu:#999;--bd:#e8e2dc;--r:8px;--sh:0 4px 24px rgba(0,0,0,.07);--tr:.2s ease;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:"Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--tx);line-height:1.6;}
+a{text-decoration:none;color:inherit;}
+.ubar{background:var(--soft);border-bottom:1px solid var(--bd);padding:6px 28px;display:flex;align-items:center;justify-content:flex-end;gap:12px;font-size:.74rem;color:var(--mu);}
+#rateLabel{margin-right:auto;}
+.pill{display:flex;border:1px solid var(--bd);border-radius:50px;overflow:hidden;background:#fff;}
+.pill button{background:none;border:none;padding:3px 13px;font-size:.73rem;cursor:pointer;font-weight:600;color:var(--mu);transition:all var(--tr);}
+.pill button.on{background:var(--a);color:#fff;}
+.vsep{width:1px;height:14px;background:var(--bd);}
+nav{background:#fff;position:sticky;top:0;z-index:100;border-bottom:1px solid var(--bd);}
+.ni{max-width:1200px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:66px;}
+.logo{font-size:1.4rem;font-weight:300;letter-spacing:3px;text-transform:uppercase;color:var(--p);}
+.logo b{font-weight:700;color:var(--a);}
+.nl{display:flex;gap:28px;font-size:.78rem;letter-spacing:.8px;text-transform:uppercase;}
+.nl a{color:var(--mu);cursor:pointer;transition:color var(--tr);}
+.nl a:hover{color:var(--p);}
+.nr{display:flex;align-items:center;gap:12px;}
+.cb{background:var(--p);color:#fff;border:none;border-radius:4px;padding:9px 20px;cursor:pointer;font-size:.76rem;font-weight:600;letter-spacing:.5px;display:flex;align-items:center;gap:8px;transition:background var(--tr);}
+.cb:hover{background:var(--a);}
+.cc{background:var(--a);color:#fff;border-radius:50%;width:17px;height:17px;font-size:.6rem;display:flex;align-items:center;justify-content:center;font-weight:700;}
+.hb{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+.hb span{width:22px;height:1.5px;background:var(--p);border-radius:2px;}
+.hero{background:linear-gradient(160deg,#f9f6f2 0%,#f0ebe3 100%);padding:100px 32px;text-align:center;}
+.htag{font-size:.68rem;letter-spacing:4px;text-transform:uppercase;color:var(--a);margin-bottom:16px;}
+.hero h1{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:300;color:var(--p);line-height:1.12;margin-bottom:16px;letter-spacing:-1.5px;}
+.hero h1 b{font-weight:700;}
+.hero p{font-size:.94rem;color:var(--mu);max-width:440px;margin:0 auto 32px;line-height:1.9;}
+.hbtns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.bp{background:var(--p);color:#fff;padding:13px 34px;border-radius:4px;font-weight:600;font-size:.8rem;letter-spacing:.5px;border:none;cursor:pointer;transition:background var(--tr);}
+.bp:hover{background:var(--a);}
+.bs{background:transparent;color:var(--p);padding:13px 34px;border-radius:4px;font-weight:600;font-size:.8rem;letter-spacing:.5px;border:1.5px solid var(--p);cursor:pointer;transition:all var(--tr);}
+.bs:hover{background:var(--p);color:#fff;}
+.trust{border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);padding:24px 32px;background:#fff;}
+.tri{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;text-align:center;}
+.ti h4{font-size:.74rem;font-weight:700;color:var(--p);letter-spacing:.8px;text-transform:uppercase;margin-bottom:2px;}
+.ti p{font-size:.74rem;color:var(--mu);}
+.sec{max-width:1200px;margin:0 auto;padding:60px 32px;}
+.st{font-size:1.4rem;font-weight:300;color:var(--p);letter-spacing:-.5px;margin-bottom:5px;}
+.st b{font-weight:700;}
+.ss{font-size:.76rem;color:var(--mu);margin-bottom:26px;}
+.cats{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px;}
+.cat{background:#fff;border:1.5px solid var(--bd);border-radius:50px;padding:6px 18px;cursor:pointer;font-size:.76rem;font-weight:600;color:var(--mu);letter-spacing:.3px;transition:all var(--tr);}
+.cat:hover{border-color:var(--a);color:var(--a);}
+.cat.on{background:var(--p);border-color:var(--p);color:#fff;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;}
+.card{background:#fff;border-radius:var(--r);overflow:hidden;border:1px solid var(--bd);transition:transform var(--tr),box-shadow var(--tr);}
+.card:hover{transform:translateY(-4px);box-shadow:var(--sh);}
+.ci{width:100%;height:210px;background:var(--soft);display:flex;align-items:center;justify-content:center;overflow:hidden;border-bottom:1px solid var(--bd);}
+.ci img{width:100%;height:100%;object-fit:cover;}
+.phtxt{font-size:.66rem;color:var(--bd);letter-spacing:2px;text-transform:uppercase;text-align:center;padding:10px;}
+.cb2{padding:17px 18px;}
+.bdg{display:inline-block;border:1px solid var(--a);color:var(--a);font-size:.6rem;font-weight:700;padding:2px 8px;border-radius:50px;margin-bottom:6px;letter-spacing:.6px;text-transform:uppercase;}
+.cn{font-size:.93rem;font-weight:600;color:var(--p);margin-bottom:4px;line-height:1.4;}
+.cd{font-size:.77rem;color:var(--mu);margin-bottom:13px;line-height:1.65;}
+.cf{display:flex;align-items:center;justify-content:space-between;}
+.pw{display:flex;flex-direction:column;}
+.pm{font-size:1.05rem;font-weight:700;color:var(--p);}
+.pa{font-size:.68rem;color:var(--mu);margin-top:1px;}
+.atc{background:var(--p);color:#fff;border:none;border-radius:4px;padding:8px 14px;font-size:.74rem;font-weight:600;cursor:pointer;letter-spacing:.3px;transition:background var(--tr);}
+.atc:hover{background:var(--a);}
+.ovl{display:none;position:fixed;inset:0;background:rgba(0,0,0,.25);z-index:200;}
+.ovl.on{display:block;}
+.sb{position:fixed;top:0;right:-430px;width:min(420px,100vw);height:100%;background:#fff;z-index:201;transition:right .3s;display:flex;flex-direction:column;border-left:1px solid var(--bd);}
+.sb.on{right:0;}
+.sbh{padding:20px 24px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;}
+.sbh h2{font-size:.78rem;font-weight:700;color:var(--p);letter-spacing:1px;text-transform:uppercase;}
+.xb{background:none;border:none;font-size:1rem;cursor:pointer;color:var(--mu);}
+.sbi{flex:1;overflow-y:auto;padding:16px 22px;}
+.emp{text-align:center;color:var(--mu);margin-top:54px;font-size:.84rem;}
+.cir{display:flex;gap:13px;padding:14px 0;border-bottom:1px solid var(--bd);}
+.cit{width:58px;height:58px;border-radius:6px;background:var(--soft);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid var(--bd);font-size:.56rem;color:var(--mu);text-align:center;padding:3px;overflow:hidden;}
+.cit img{width:100%;height:100%;object-fit:cover;}
+.cii{flex:1;}
+.cin{font-size:.82rem;font-weight:600;color:var(--p);margin-bottom:2px;}
+.cip{font-size:.74rem;color:var(--mu);}
+.ciq{display:flex;align-items:center;gap:8px;margin-top:7px;}
+.qb{background:var(--soft);border:1px solid var(--bd);border-radius:3px;width:23px;height:23px;cursor:pointer;font-size:.82rem;font-weight:700;color:var(--p);}
+.qn{font-size:.82rem;font-weight:600;min-width:15px;text-align:center;}
+.rm{background:none;border:none;color:var(--mu);cursor:pointer;font-size:.68rem;margin-left:auto;align-self:flex-start;}
+.sbf{padding:16px 22px;border-top:1px solid var(--bd);}
+.tr{display:flex;justify-content:space-between;font-size:.92rem;font-weight:700;color:var(--p);margin-bottom:3px;}
+.ta{font-size:.72rem;color:var(--mu);margin-bottom:13px;}
+.cob{width:100%;background:var(--p);color:#fff;border:none;border-radius:4px;padding:12px;font-size:.8rem;font-weight:700;cursor:pointer;letter-spacing:.5px;transition:background var(--tr);}
+.cob:hover{background:var(--a);}
+.mbg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:300;align-items:center;justify-content:center;padding:18px;}
+.mbg.on{display:flex;}
+.modal{background:#fff;border-radius:var(--r);width:100%;max-width:510px;max-height:91vh;overflow-y:auto;}
+.mh{padding:18px 24px;border-bottom:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center;}
+.mh h2{font-size:.76rem;font-weight:700;color:var(--p);letter-spacing:1px;text-transform:uppercase;}
+.mb{padding:20px 24px;}
+.fs{margin-bottom:18px;}
+.fs h3{font-size:.66rem;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--bd);}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.fg{margin-bottom:10px;}
+.fg label{display:block;font-size:.72rem;font-weight:600;color:var(--p);margin-bottom:4px;}
+.fg input,.fg select{width:100%;padding:8px 11px;border:1.5px solid var(--bd);border-radius:5px;font-size:.86rem;background:#fff;transition:border-color var(--tr);color:var(--tx);}
+.fg input:focus,.fg select:focus{outline:none;border-color:var(--a);}
+.fg input[readonly]{background:var(--soft);color:var(--mu);}
+.cpk{display:flex;gap:8px;margin-bottom:12px;}
+.cpk input{display:none;}
+.cpk label{flex:1;border:1.5px solid var(--bd);border-radius:5px;padding:8px 10px;cursor:pointer;font-size:.76rem;font-weight:600;text-align:center;transition:all var(--tr);color:var(--mu);}
+.cpk input:checked+label{border-color:var(--a);color:var(--a);background:#fdf8f5;}
+.c3{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px;}
+.sn{font-size:.68rem;color:var(--mu);margin-bottom:11px;}
+.os{background:var(--soft);border-radius:5px;padding:13px;margin-bottom:16px;border:1px solid var(--bd);}
+.ol{display:flex;justify-content:space-between;font-size:.8rem;margin-bottom:4px;}
+.ol.tot{font-weight:700;font-size:.88rem;border-top:1px solid var(--bd);padding-top:6px;margin-top:6px;}
+.pb{width:100%;background:var(--p);color:#fff;border:none;border-radius:4px;padding:13px;font-size:.84rem;font-weight:700;cursor:pointer;letter-spacing:.5px;transition:background var(--tr);}
+.pb:hover{background:var(--a);}
+.sucbg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:400;align-items:center;justify-content:center;}
+.sucbg.on{display:flex;}
+.sucb{background:#fff;border-radius:var(--r);padding:44px 36px;text-align:center;max-width:370px;width:90%;}
+.sucb h2{font-size:1.3rem;font-weight:300;color:var(--p);margin-bottom:10px;letter-spacing:-.5px;}
+.sucb h2 b{font-weight:700;}
+.sucb p{color:var(--mu);margin-bottom:4px;font-size:.82rem;}
+.sid{font-weight:700;font-size:.82rem;color:var(--a);margin:10px 0 20px;}
+.sucb button{background:var(--p);color:#fff;border:none;border-radius:4px;padding:10px 26px;font-size:.8rem;font-weight:600;cursor:pointer;letter-spacing:.5px;transition:background var(--tr);}
+.sucb button:hover{background:var(--a);}
+footer{background:var(--soft);border-top:1px solid var(--bd);padding:50px 32px 24px;}
+.ft{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;margin-bottom:32px;}
+.ftb p{font-size:.76rem;color:var(--mu);line-height:1.9;max-width:190px;margin-top:9px;}
+.fc h4{font-size:.66rem;font-weight:700;color:var(--p);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:11px;}
+.fc a{display:block;font-size:.76rem;color:var(--mu);margin-bottom:6px;cursor:pointer;transition:color var(--tr);}
+.fc a:hover{color:var(--a);}
+.ftbot{max-width:1200px;margin:0 auto;border-top:1px solid var(--bd);padding-top:16px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;font-size:.7rem;color:var(--mu);}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(70px);background:var(--p);color:#fff;padding:9px 20px;border-radius:4px;font-size:.78rem;font-weight:600;z-index:500;transition:transform .3s;white-space:nowrap;}
+.toast.on{transform:translateX(-50%) translateY(0);}
+@media(max-width:900px){.ft{grid-template-columns:1fr 1fr;}}
+@media(max-width:768px){
+  .nl{display:none;position:absolute;top:66px;left:0;right:0;background:#fff;flex-direction:column;padding:13px 20px;gap:13px;border-bottom:1px solid var(--bd);z-index:99;}
+  .nl.on{display:flex;} .hb{display:flex;}
+  .fr,.c3{grid-template-columns:1fr;}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(155px,1fr));}
+  .ci{height:155px;} .sec{padding:42px 16px;} .hero{padding:66px 16px;}
+  .ft{grid-template-columns:1fr 1fr;gap:22px;}
+}
+@media(max-width:480px){.ft{grid-template-columns:1fr;}}
+</style></head><body>
+<div class="ubar">
+  <span id="rl">Loading rate...</span>
+  <div class="vsep"></div>
+  <div class="pill">
+    <button class="on" id="bAUD" onclick="setCur('AUD')">AUD</button>
+    <button id="bCNY" onclick="setCur('CNY')">CNY</button>
+  </div>
+  <div class="vsep"></div>
+  <div class="pill">
+    <button class="on" id="bEN" onclick="setLang('en')">EN</button>
+    <button id="bZH" onclick="setLang('zh')">&#20013;&#25991;</button>
+  </div>
+</div>
+
+<nav>
+  <div class="ni">
+    <div class="logo">Cozy <b>Home</b></div>
+    <div class="nl" id="nl">
+      <a onclick="goTo('shop')"  data-en="Shop" data-zh="&#21830;&#22478;">Shop</a>
+      <a onclick="goTo('cats')"  data-en="Categories" data-zh="&#20998;&#31867;">Categories</a>
+      <a onclick="goTo('foot')"  data-en="About" data-zh="&#20851;&#20110;">About</a>
+      <a onclick="goTo('foot')"  data-en="Contact" data-zh="&#32852;&#31995;">Contact</a>
+    </div>
+    <div class="nr">
+      <button class="cb" onclick="openCart()">
+        <span data-en="Cart" data-zh="&#36141;&#29289;&#36710;">Cart</span>
+        <span class="cc" id="cartCount">0</span>
+      </button>
+      <div class="hb" onclick="document.getElementById('nl').classList.toggle('on')">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="htag" data-en="Premium Bedroom Collection" data-zh="&#39640;&#21697;&#36136;&#21381;&#23460;&#31995;&#21015;">Premium Bedroom Collection</div>
+  <h1 data-en="Sleep Better,<br/><b>Live Cosier</b>" data-zh="&#30�;&#24471;&#26356;&#22909;&#65292;<br/><b>&#29983;&#27963;&#26356;&#33292;&#36827;</b>">Sleep Better,<br/><b>Live Cosier</b></h1>
+  <p data-en="Thoughtfully crafted sheets, blankets, pillows and manchester for every home." data-zh="&#31934;&#24515;&#35774;&#35745;&#30340;&#24202;&#21333;&#12289;&#27629;&#23376;&#12289;&#26410;&#22836;&#21450;&#21381;&#23460;&#29992;&#21697;&#65292;&#36866;&#21512;&#27ỗi&#20491;&#23478;&#24237;&#12002;">Thoughtfully crafted sheets, blankets, pillows and manchester for every home.</p>
+  <div class="hbtns">
+    <button class="bp" onclick="goTo('shop')" data-en="Shop Now" data-zh="&#31435;&#21363;&#36141;&#36141;">Shop Now</button>
+    <button class="bs" onclick="goTo('cats')" data-en="Browse Collection" data-zh="&#27993;&#35272;&#31995;&#21015;">Browse Collection</button>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="tri">
+    <div class="ti"><h4 data-en="Free Shipping" data-zh="&#20813;&#36153;&#37197;&#36865;">Free Shipping</h4><p data-en="Orders over A$80" data-zh="&#35746;&#21333;&#28385;A$80">Orders over A$80</p></div>
+    <div class="ti"><h4 data-en="30-Day Returns" data-zh="30&#22825;&#36864;&#25442;">30-Day Returns</h4><p data-en="Hassle-free policy" data-zh="&#26080;&#24841;&#36864;&#25442;">Hassle-free policy</p></div>
+    <div class="ti"><h4 data-en="Secure Checkout" data-zh="&#23433;&#20840;&#25903;&#20184;">Secure Checkout</h4><p data-en="Powered by Stripe" data-zh="&#30001;Stripe&#25552;&#20379;">Powered by Stripe</p></div>
+    <div class="ti"><h4 data-en="AUD &amp; CNY" data-zh="&#25320;&#20803;&#19982;&#20154;&#27665;&#24065;">AUD &amp; CNY</h4><p data-en="Live daily rates" data-zh="&#27ỗi&#26085;&#23454;&#26102;&#27719;&#29575;">Live daily rates</p></div>
+  </div>
+</div>
+
+<section class="sec" id="cats">
+  <div class="st" data-en="Our <b>Collection</b>" data-zh="&#31934;&#36873;<b>&#31995;&#21015;</b>">Our <b>Collection</b></div>
+  <div class="ss" id="pc"></div>
+  <div class="cats" id="catRow">
+    <div class="cat on" onclick="fCat('all',this)" data-en="All Products" data-zh="&#20840;&#37096;">All Products</div>
+    <div class="cat" onclick="fCat('sheets',this)" data-en="Bed Sheets" data-zh="&#24202;&#21333;">Bed Sheets</div>
+    <div class="cat" onclick="fCat('blankets',this)" data-en="Blankets" data-zh="&#27629;&#23376;">Blankets</div>
+    <div class="cat" onclick="fCat('pillows',this)" data-en="Pillows" data-zh="&#26410;&#22836;">Pillows</div>
+    <div class="cat" onclick="fCat('quilts',this)" data-en="Quilts" data-zh="&#34987;&#23376;">Quilts</div>
+    <div class="cat" onclick="fCat('towels',this)" data-en="Towels" data-zh="&#27611;&#24041;">Towels</div>
+  </div>
+  <div class="grid" id="grid"></div>
+</section>
+<div id="shop"></div>
+
+<footer id="foot">
+  <div class="ft">
+    <div class="ftb">
+      <div class="logo">Cozy <b>Home</b></div>
+      <p data-en="Premium bedroom manchester for every home. Shipping Australia-wide." data-zh="&#36866;&#21512;&#27ỗi&#20491;&#23478;&#24237;&#30340;&#20248;&#36136;&#21381;&#23460;&#29992;&#21697;&#12002;&#28500;&#22823;&#21033;&#20122;&#20840;&#22269;&#37197;&#36865;&#12002;">Premium bedroom manchester. Ships Australia-wide.</p>
+    </div>
+    <div class="fc"><h4 data-en="Shop" data-zh="&#21830;&#22478;">Shop</h4>
+      <a data-en="Bed Sheets" data-zh="&#24202;&#21333;">Bed Sheets</a>
+      <a data-en="Blankets" data-zh="&#27629;&#23376;">Blankets</a>
+      <a data-en="Pillows" data-zh="&#26410;&#22836;">Pillows</a>
+      <a data-en="Quilts" data-zh="&#34987;&#23376;">Quilts</a>
+      <a data-en="Towels" data-zh="&#27611;&#24041;">Towels</a>
+    </div>
+    <div class="fc"><h4 data-en="Help" data-zh="&#24110;&#21161;">Help</h4>
+      <a data-en="Shipping" data-zh="&#37197;&#36865;">Shipping</a>
+      <a data-en="Returns" data-zh="&#36864;&#36135;">Returns</a>
+      <a data-en="Size Guide" data-zh="&#23610;&#30721;">Size Guide</a>
+      <a data-en="FAQ" data-zh="&#24120;&#35265;&#38382;&#39064;">FAQ</a>
+    </div>
+    <div class="fc"><h4 data-en="Contact" data-zh="&#32852;&#31995;">Contact</h4>
+      <a>hello@cozyhome.com.au</a>
+      <a>1300 COZY HOME</a>
+      <a>Instagram</a>
+      <a data-en="WeChat" data-zh="&#24494;&#20449;">WeChat</a>
+    </div>
+  </div>
+  <div class="ftbot">
+    <span>2026 Cozy Home. All rights reserved. ABN 00 000 000 000</span>
+    <span data-en="Rates via Open Exchange Rates" data-zh="&#27719;&#29575;&#65306;Open Exchange Rates">Rates via Open Exchange Rates</span>
+  </div>
+</footer>
+
+<div class="ovl" id="ovl" onclick="closeCart()"></div>
+<div class="sb" id="sbEl">
+  <div class="sbh"><h2 data-en="Your Cart" data-zh="&#36141;&#29289;&#36710;">Your Cart</h2><button class="xb" onclick="closeCart()">&#x2715;</button></div>
+  <div class="sbi" id="sbi"><div class="emp" data-en="Your cart is empty" data-zh="&#36141;&#29289;&#36710;&#26159;&#31354;&#30340;">Your cart is empty</div></div>
+  <div class="sbf" id="sbf" style="display:none">
+    <div class="tr"><span data-en="Total" data-zh="&#21512;&#35745;">Total</span><span id="tAUD">A$0.00</span></div>
+    <div class="ta" id="tCNY"></div>
+    <button class="cob" onclick="openCO()" data-en="Proceed to Checkout" data-zh="&#21435;&#32467;&#36134;">Proceed to Checkout</button>
+  </div>
+</div>
+
+<div class="mbg" id="mbg">
+  <div class="modal">
+    <div class="mh"><h2 data-en="Checkout" data-zh="&#32467;&#36134;">Checkout</h2><button class="xb" onclick="closeCO()">&#x2715;</button></div>
+    <div class="mb">
+      <div class="os" id="os"></div>
+      <form onsubmit="placeOrder(event)">
+        <div class="fs"><h3 data-en="Contact Details" data-zh="&#32852;&#31995;&#26041;&#24335;">Contact Details</h3>
+          <div class="fg"><label data-en="Full Name *" data-zh="&#22995;&#21517; *">Full Name *</label><input id="fn" required placeholder="Jane Smith"/></div>
+          <div class="fr">
+            <div class="fg"><label data-en="Email *" data-zh="&#37038;&#31665; *">Email *</label><input id="fe" type="email" required placeholder="jane@email.com"/></div>
+            <div class="fg"><label data-en="Phone" data-zh="&#30005;&#35805;">Phone</label><input id="fp" type="tel" placeholder="04XX XXX XXX"/></div>
+          </div>
+          <div class="fg"><label data-en="WeChat (optional)" data-zh="&#24494;&#20449;&#21495;(&#36873;&#22635;)">WeChat (optional)</label><input id="fw" placeholder="WeChat ID"/></div>
+        </div>
+        <div class="fs"><h3 data-en="Shipping Address" data-zh="&#25910;&#36135;&#22320;&#22336;">Shipping Address</h3>
+          <div class="fg"><label data-en="Street *" data-zh="&#34453;&#36947; *">Street *</label><input id="fa" required placeholder="123 Main Street"/></div>
+          <div class="fr">
+            <div class="fg"><label data-en="City *" data-zh="&#22478;&#24066; *">City *</label><input id="fc" required placeholder="Melbourne"/></div>
+            <div class="fg"><label data-en="State *" data-zh="&#24030; *">State *</label>
+              <select id="fs2" required><option value="">Select...</option>
+                <option>VIC</option><option>NSW</option><option>QLD</option><option>WA</option>
+                <option>SA</option><option>TAS</option><option>ACT</option><option>NT</option>
+              </select></div>
+          </div>
+          <div class="fr">
+            <div class="fg"><label data-en="Postcode *" data-zh="&#37038;&#32534; *">Postcode *</label><input id="fpc" required placeholder="3000" maxlength="4"/></div>
+            <div class="fg"><label data-en="Country" data-zh="&#22269;&#23478;">Country</label><input value="Australia" readonly/></div>
+          </div>
+        </div>
+        <div class="fs"><h3 data-en="Payment Currency" data-zh="&#25903;&#20184;&#36135;&#24065;">Payment Currency</h3>
+          <div class="cpk">
+            <input type="radio" name="pc" id="pcA" value="AUD" checked onchange="updAmt()">
+            <label for="pcA">AUD &mdash; Australian Dollar</label>
+            <input type="radio" name="pc" id="pcC" value="CNY" onchange="updAmt()">
+            <label for="pcC">CNY &mdash; Chinese Yuan</label>
+          </div>
+          <div id="pamt" style="font-size:.76rem;color:var(--mu);margin-bottom:10px;"></div>
+        </div>
+        <div class="fs"><h3 data-en="Card Details" data-zh="&#38134;&#34892;&#21345;&#20449;&#24687;">Card Details</h3>
+          <div class="sn" data-en="Secured by Stripe &mdash; card details are encrypted." data-zh="&#30001;Stripe&#21152;&#23494;&#20445;&#25252;&#12002;">Secured by Stripe &mdash; card details are encrypted.</div>
+          <div class="fg"><label data-en="Card Number *" data-zh="&#21345;&#21495; *">Card Number *</label><input id="fcc" required placeholder="1234 5678 9012 3456" maxlength="19" oninput="fmtCard(this)"/></div>
+          <div class="c3">
+            <div class="fg"><label data-en="Name on Card *" data-zh="&#25345;&#21345;&#20154;&#23713;&#21517; *">Name on Card *</label><input id="fcn" required placeholder="Jane Smith"/></div>
+            <div class="fg"><label data-en="Expiry *" data-zh="&#26377;&#25928;&#26399; *">Expiry *</label><input id="fex" required placeholder="MM/YY" maxlength="5" oninput="fmtExp(this)"/></div>
+            <div class="fg"><label>CVV *</label><input id="fcv" required placeholder="123" maxlength="4"/></div>
+          </div>
+        </div>
+        <button type="submit" class="pb" id="payBtn" data-en="Place Order &amp; Pay" data-zh="&#19979;&#21333;&#25903;&#20184;">Place Order &amp; Pay</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="sucbg" id="sucBg">
+  <div class="sucb">
+    <h2 data-en="Order <b>Confirmed</b>" data-zh="&#35746;&#21333;<b>&#24050;&#30830;&#35748;</b>">Order <b>Confirmed</b></h2>
+    <p data-en="Thank you. Your order has been received." data-zh="&#24863;&#35874;&#24744;&#30340;&#35746;&#36135;&#65281;&#35746;&#21333;&#24050;&#25910;&#21040;&#12002;">Thank you. Your order has been received.</p>
+    <p data-en="A confirmation email will be sent shortly." data-zh="&#30830;&#35748;&#37038;&#20214;&#23558;&#24456;&#24555;&#21457;&#36865;&#12002;">A confirmation email will be sent shortly.</p>
+    <p class="sid" id="sucId"></p>
+    <button onclick="closeSuc()" data-en="Continue Shopping" data-zh="&#32493;&#32493;&#36141;&#29289;">Continue Shopping</button>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const T={
+  en:{add:n=>n+" added to cart",empty:"Your cart is empty",proc:"Processing...",pay:"Place Order & Pay",
+      pr:(p,c)=>"A$"+p+" / ¥"+c,pAUD:a=>"You will pay: A$"+a,pCNY:(c,r)=>"You will pay: ¥"+c+" CNY (1 AUD = "+r+")",
+      free:"Free",ship:"Shipping",tot:"Order Total",itm:n=>n+" item"+(n===1?"":"s")},
+  zh:{add:n=>n+"已加入购物车",empty:"购物车是空的",proc:"处理中...",pay:"下单支付",
+      pr:(p,c)=>"A$"+p+" / ¥"+c,pAUD:a=>"您将支付：A$"+a,pCNY:(c,r)=>"您将支付：¥"+c+" 人民币（1澳元="+r+"元）",
+      free:"免运费",ship:"运费",tot:"订单合计",itm:n=>n+" 件商品"}
+};
+const P=[
+  {id:1,en:{name:"Egyptian Cotton Sheet Set",desc:"400 thread count, silky smooth. Queen, King and Double."},zh:{name:"埃及棉床单套装",desc:"400支，丝滑细腔，适合多种尺寸。"},cat:"sheets",price:89.95,badge:"Bestseller"},
+  {id:2,en:{name:"Bamboo Sheet Set",desc:"100% organic bamboo, breathable and hypoallergenic."},zh:{name:"竹纤维床单套装",desc:"100%有机竹纤维，透气低敏。"},cat:"sheets",price:79.95,badge:"Eco"},
+  {id:3,en:{name:"Fitted Sheet - King",desc:"Deep pocket with full elasticated edging."},zh:{name:"床笠（King尺寸）",desc:"深袋设计，四周松紧边。"},cat:"sheets",price:49.95,badge:""},
+  {id:4,en:{name:"Luxury Sherpa Blanket",desc:"Ultra-soft double-sided sherpa fleece."},zh:{name:"奢华雪巴绒毯",desc:"超柔软双面雪巴绒。"},cat:"blankets",price:69.95,badge:"New"},
+  {id:5,en:{name:"Waffle Knit Throw",desc:"Elegant waffle texture, 100% cotton."},zh:{name:"华夫格针织毯",desc:"优雅华夫格纹，100%纯棉。"},cat:"blankets",price:54.95,badge:""},
+  {id:6,en:{name:"Weighted Blanket 7kg",desc:"Deep-pressure blanket for calmer, deeper sleep."},zh:{name:"重力毯 7公斤",desc:"深压力助眠毯，让睡眠更深。"},cat:"blankets",price:119.95,badge:"Popular"},
+  {id:7,en:{name:"Memory Foam Pillow",desc:"Contoured memory foam, medium-firm support."},zh:{name:"记忆棉枝头",desc:"曲线记忆棉，中等硬度支撑。"},cat:"pillows",price:59.95,badge:"Bestseller"},
+  {id:8,en:{name:"Pillowcase Set - 2 Pack",desc:"Standard and king size, 300 thread count cotton."},zh:{name:"枝套套装（2件）",desc:"300支精梳纯棉。"},cat:"pillows",price:29.95,badge:""},
+  {id:9,en:{name:"Duck Down Pillow",desc:"Genuine duck down, soft and breathable."},zh:{name:"鸭绒枝头",desc:"真正鸭绒士充，柔软透气。"},cat:"pillows",price:74.95,badge:"Premium"},
+  {id:10,en:{name:"All-Season Quilt 400GSM",desc:"Premium microfibre fill for year-round comfort."},zh:{name:"四季被 400GSM",desc:"优质超细维维士充，四季适用。"},cat:"quilts",price:99.95,badge:"Bestseller"},
+  {id:11,en:{name:"Winter Goose Down Doona",desc:"700GSM goose down for supremely warm winters."},zh:{name:"冬季鹅绒被",desc:"700GSM鹅绒士充，冬夜极致保暖。"},cat:"quilts",price:189.95,badge:"Premium"},
+  {id:12,en:{name:"Summer Bamboo Quilt",desc:"Lightweight bamboo fill, cool for warm months."},zh:{name:"夏季竹纤维薄被",desc:"轻盈竹纤维士充，夏季清凉。"},cat:"quilts",price:89.95,badge:"New"},
+  {id:13,en:{name:"Bath Towel Set - 4 Pack",desc:"600GSM Egyptian cotton, ultra absorbent."},zh:{name:"浴巾套装（4件）",desc:"600GSM埃及棉，超强吸水。"},cat:"towels",price:64.95,badge:""},
+  {id:14,en:{name:"Luxury Hand Towel Set",desc:"Soft, quick-dry 500GSM cotton."},zh:{name:"奠华洗手巾套装",desc:"柔软速干，500GSM纯棉。"},cat:"towels",price:39.95,badge:""},
+  {id:15,en:{name:"Oversized Beach Towel",desc:"Sand-free microfibre, 180 x 100cm."},zh:{name:"超大沙滩巾",desc:"防沙超细维维，180x100cm。"},cat:"towels",price:44.95,badge:"Summer"},
+  {id:16,en:{name:"Bed Runner & Cushion Set",desc:"Decorative runner with 2 matching cushion covers."},zh:{name:"床旗抛枝套装",desc:"装饰床旗加2个配套抛枝套。"},cat:"sheets",price:55.95,badge:"New"},
+];
+let lang=localStorage.getItem("chl")||"en",cur="AUD",rate=4.75,rSrc="est",cCat="all";
+let cart=JSON.parse(localStorage.getItem("ch6_cart")||"[]");
+
+function setLang(l){
+  lang=l;localStorage.setItem("chl",l);
+  document.getElementById("bEN").classList.toggle("on",l==="en");
+  document.getElementById("bZH").classList.toggle("on",l==="zh");
+  document.querySelectorAll("[data-en]").forEach(el=>{const v=el.getAttribute("data-"+l);if(v)el.innerHTML=v;});
+  renderP(cCat);renderCart();
+}
+async function fetchRate(){
+  const K="chr",D="chd",today=new Date().toISOString().slice(0,10);
+  const cd=localStorage.getItem(D),cr=parseFloat(localStorage.getItem(K));
+  if(cd===today&&cr>0){rate=cr;rSrc="live";setRL(today);return;}
+  try{const r=await fetch("https://open.er-api.com/v6/latest/AUD");const d=await r.json();
+    if(d.rates?.CNY){rate=parseFloat(d.rates.CNY.toFixed(4));rSrc="live";localStorage.setItem(K,rate);localStorage.setItem(D,today);setRL(today);return;}}catch(e){}
+  try{const r=await fetch("https://api.exchangerate.host/latest?base=AUD&symbols=CNY");const d=await r.json();
+    if(d.rates?.CNY){rate=parseFloat(d.rates.CNY.toFixed(4));rSrc="live";localStorage.setItem(K,rate);localStorage.setItem(D,today);setRL(today);return;}}catch(e){}
+  if(cr>0){rate=cr;rSrc="cached";}setRL(today);
+}
+function setRL(dt){
+  document.getElementById("rl").textContent="1 AUD = ¥"+rate.toFixed(4)+" CNY ("+rSrc+" · "+dt.slice(0,10)+")";
+  renderP(cCat);renderCart();
+}
+function cny(a){return(a*rate).toFixed(2);}
+function fmt(a){return cur==="CNY"?"¥"+cny(a):"A$"+a.toFixed(2);}
+function fmtA(a){return cur==="CNY"?"A$"+a.toFixed(2):"¥"+cny(a);}
+function setCur(c){cur=c;document.getElementById("bAUD").classList.toggle("on",c==="AUD");document.getElementById("bCNY").classList.toggle("on",c==="CNY");renderP(cCat);renderCart();}
+function renderP(cat){
+  cCat=cat;
+  const list=cat==="all"?P:P.filter(p=>p.cat===cat);
+  document.getElementById("pc").textContent=T[lang].itm(list.length);
+  const at=lang==="zh"?"加入购物车":"Add to Cart";
+  document.getElementById("grid").innerHTML=list.map(p=>{
+    const nm=p[lang].name,ds=p[lang].desc;
+    return`<div class="card"><div class="ci"><div class="phtxt">${nm.substring(0,14)}</div></div><div class="cb2">${p.badge?`<span class="bdg">${p.badge}</span>`:""}<div class="cn">${nm}</div><div class="cd">${ds}</div><div class="cf"><div class="pw"><span class="pm">${fmt(p.price)}</span><span class="pa">${fmtA(p.price)}</span></div><button class="atc" onclick="addC(${p.id})">${at}</button></div></div></div>`;
+  }).join("");
+}
+function fCat(c,el){document.querySelectorAll(".cat").forEach(x=>x.classList.remove("on"));el.classList.add("on");renderP(c);}
+function addC(id){
+  const p=P.find(x=>x.id===id),ex=cart.find(x=>x.id===id);
+  if(ex)ex.qty++;else cart.push({id:p.id,en:p.en.name,zh:p.zh.name,price:p.price,qty:1});
+  saveC();toast(T[lang].add(p[lang].name));renderCart();
+}
+function saveC(){localStorage.setItem("ch6_cart",JSON.stringify(cart));document.getElementById("cartCount").textContent=cart.reduce((s,i)=>s+i.qty,0);}
+function renderCart(){
+  const el=document.getElementById("sbi"),ft=document.getElementById("sbf");
+  if(!cart.length){el.innerHTML=`<div class="emp">${T[lang].empty}</div>`;ft.style.display="none";return;}
+  ft.style.display="block";
+  const tot=cart.reduce((s,i)=>s+(i.price*i.qty),0);
+  document.getElementById("tAUD").textContent="A$"+tot.toFixed(2);
+  document.getElementById("tCNY").textContent="¥"+cny(tot)+" CNY";
+  document.querySelector(".cob").textContent=lang==="zh"?"去结账":"Proceed to Checkout";
+  el.innerHTML=cart.map(i=>{
+    const nm=lang==="zh"?i.zh:i.en;
+    return`<div class="cir"><div class="cit">${nm.substring(0,8)}</div><div class="cii"><div class="cin">${nm}</div><div class="cip">${T[lang].pr(i.price.toFixed(2),cny(i.price))}</div><div class="ciq"><button class="qb" onclick="chQ(${i.id},-1)">−</button><span class="qn">${i.qty}</span><button class="qb" onclick="chQ(${i.id},1)">+</button></div></div><button class="rm" onclick="rmI(${i.id})">Remove</button></div>`;
+  }).join("");
+}
+function chQ(id,d){const i=cart.find(x=>x.id===id);if(!i)return;i.qty+=d;if(i.qty<=0)cart=cart.filter(x=>x.id!==id);saveC();renderCart();}
+function rmI(id){cart=cart.filter(x=>x.id!==id);saveC();renderCart();}
+function openCart(){document.getElementById("sbEl").classList.add("on");document.getElementById("ovl").classList.add("on");}
+function closeCart(){document.getElementById("sbEl").classList.remove("on");document.getElementById("ovl").classList.remove("on");}
+function openCO(){
+  closeCart();
+  const tot=cart.reduce((s,i)=>s+(i.price*i.qty),0),sh=tot>=80?0:9.95,g=tot+sh;
+  document.getElementById("os").innerHTML=
+    cart.map(i=>`<div class="ol"><span>${lang==="zh"?i.zh:i.en} x${i.qty}</span><span>A$${(i.price*i.qty).toFixed(2)}</span></div>`).join("")+
+    `<div class="ol"><span>${T[lang].ship}</span><span>${sh===0?T[lang].free:"A$"+sh.toFixed(2)}</span></div>`+
+    `<div class="ol tot"><span>${T[lang].tot}</span><span>A$${g.toFixed(2)} <small style="color:var(--mu);font-weight:400">/ ¥${cny(g)}</small></span></div>`;
+  setLang(lang);updAmt();document.getElementById("mbg").classList.add("on");
+}
+function updAmt(){
+  const tot=cart.reduce((s,i)=>s+(i.price*i.qty),0),sh=tot>=80?0:9.95,g=tot+sh;
+  const pc=document.querySelector("input[name=pc]:checked")?.value||"AUD";
+  document.getElementById("pamt").innerHTML=pc==="CNY"?T[lang].pCNY(cny(g),rate):T[lang].pAUD(g.toFixed(2));
+}
+function closeCO(){document.getElementById("mbg").classList.remove("on");}
+function fmtCard(el){let v=el.value.replace(/\D/g,"").substring(0,16);el.value=v.replace(/(\d{4})/g,"$1 ").trim();}
+function fmtExp(el){let v=el.value.replace(/\D/g,"");if(v.length>=2)v=v.substring(0,2)+"/"+v.substring(2,4);el.value=v;}
+function placeOrder(e){
+  e.preventDefault();const btn=document.getElementById("payBtn");
+  btn.textContent=T[lang].proc;btn.disabled=true;
+  const tot=cart.reduce((s,i)=>s+(i.price*i.qty),0),sh=tot>=80?0:9.95,g=tot+sh;
+  const pc=document.querySelector("input[name=pc]:checked")?.value||"AUD";
+  const order={orderId:"CH-"+Date.now(),timestamp:new Date().toISOString(),
+    customer:{name:document.getElementById("fn").value,email:document.getElementById("fe").value,
+      phone:document.getElementById("fp").value,wechat:document.getElementById("fw").value,
+      address:{street:document.getElementById("fa").value,city:document.getElementById("fc").value,
+        state:document.getElementById("fs2").value,postcode:document.getElementById("fpc").value,country:"Australia"}},
+    items:cart.map(i=>({id:i.id,name:i.en,price:i.price,qty:i.qty})),
+    totals:{subtotal:tot,shipping:sh,grandTotal:g,currency:pc,audToCny:rate,amountCNY:pc==="CNY"?parseFloat(cny(g)):null},
+    payment:{method:"stripe",status:"pending"}};
+  console.log("ORDER:",JSON.stringify(order,null,2));
+  // TODO: fetch("/api/orders",{method:"POST",body:JSON.stringify(order)})
+  setTimeout(()=>{closeCO();document.getElementById("sucId").textContent="Order ID: "+order.orderId;
+    document.getElementById("sucBg").classList.add("on");cart=[];saveC();renderCart();
+    btn.textContent=T[lang].pay;btn.disabled=false;},1800);
+}
+function closeSuc(){document.getElementById("sucBg").classList.remove("on");}
+function goTo(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:"smooth"});}
+function toast(m){const t=document.getElementById("toast");t.textContent=m;t.classList.add("on");setTimeout(()=>t.classList.remove("on"),2500);}
+fetchRate();renderP("all");saveC();renderCart();setLang(lang);
+</script></body></html>
