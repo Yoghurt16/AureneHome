@@ -2,9 +2,9 @@
 <html lang="en"><head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Cozy Home</title>
+<title>Lumière Home</title>
 <style>
-:root{--p:#2c2c2c;--a:#b07d62;--bg:#fff;--soft:#f7f4f1;--lt:#efe9e3;--tx:#333;--mu:#999;--bd:#e8e2dc;--r:8px;--sh:0 4px 24px rgba(0,0,0,.07);--tr:.2s ease;}
+:root{--p:#1a1a1a;--a:#c9a84c;--bg:#fff;--soft:#faf8f4;--lt:#f2ede3;--tx:#2c2c2c;--mu:#999;--bd:#e8e2d6;--r:8px;--sh:0 4px 24px rgba(0,0,0,.07);--tr:.2s ease;}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:"Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--tx);line-height:1.6;}
 a{text-decoration:none;color:inherit;}
@@ -271,7 +271,7 @@ footer{background:var(--soft);border-top:1px solid var(--bd);padding:50px 32px 2
 
 <nav>
   <div class="ni">
-    <div class="logo">Cozy <b>Home</b></div>
+    <div class="logo">Lumière <b>Home</b></div>
     <div class="nl" id="nl">
       <a onclick="goTo('shop')"  data-en="Shop" data-zh="&#21830;&#22478;">Shop</a>
       <a onclick="goTo('cats')"  data-en="Categories" data-zh="&#20998;&#31867;">Categories</a>
@@ -292,7 +292,7 @@ footer{background:var(--soft);border-top:1px solid var(--bd);padding:50px 32px 2
 
 <section class="hero">
   <div class="htag" data-en="Premium Bedroom Collection" data-zh="&#39640;&#21697;&#36136;&#21381;&#23460;&#31995;&#21015;">Premium Bedroom Collection</div>
-  <h1 data-en="Sleep Better,<br/><b>Live Cosier</b>" data-zh="&#30�;&#24471;&#26356;&#22909;&#65292;<br/><b>&#29983;&#27963;&#26356;&#33292;&#36827;</b>">Sleep Better,<br/><b>Live Cosier</b></h1>
+  <h1 data-en="Sleep Better,<br/><b>Live Beautifully</b>" data-zh="&#30�;&#24471;&#26356;&#22909;&#65292;<br/><b>&#29983;&#27963;&#26356;&#33292;&#36827;</b>">Sleep Better,<br/><b>Live Beautifully</b></h1>
   <p data-en="Thoughtfully crafted sheets, blankets, pillows and manchester for every home." data-zh="&#31934;&#24515;&#35774;&#35745;&#30340;&#24202;&#21333;&#12289;&#27629;&#23376;&#12289;&#26410;&#22836;&#21450;&#21381;&#23460;&#29992;&#21697;&#65292;&#36866;&#21512;&#27ỗi&#20491;&#23478;&#24237;&#12002;">Thoughtfully crafted sheets, blankets, pillows and manchester for every home.</p>
   <div class="hbtns">
     <button class="bp" onclick="goTo('shop')" data-en="Shop Now" data-zh="&#31435;&#21363;&#36141;&#36141;">Shop Now</button>
@@ -327,7 +327,7 @@ footer{background:var(--soft);border-top:1px solid var(--bd);padding:50px 32px 2
 <footer id="foot">
   <div class="ft">
     <div class="ftb">
-      <div class="logo">Cozy <b>Home</b></div>
+      <div class="logo">Lumière <b>Home</b></div>
       <p data-en="Premium bedroom manchester for every home. Shipping Australia-wide." data-zh="&#36866;&#21512;&#27ỗi&#20491;&#23478;&#24237;&#30340;&#20248;&#36136;&#21381;&#23460;&#29992;&#21697;&#12002;&#28500;&#22823;&#21033;&#20122;&#20840;&#22269;&#37197;&#36865;&#12002;">Premium bedroom manchester. Ships Australia-wide.</p>
     </div>
     <div class="fc"><h4 data-en="Shop" data-zh="&#21830;&#22478;">Shop</h4>
@@ -344,14 +344,14 @@ footer{background:var(--soft);border-top:1px solid var(--bd);padding:50px 32px 2
       <a data-en="FAQ" data-zh="&#24120;&#35265;&#38382;&#39064;">FAQ</a>
     </div>
     <div class="fc"><h4 data-en="Contact" data-zh="&#32852;&#31995;">Contact</h4>
-      <a>hello@cozyhome.com.au</a>
-      <a>1300 COZY HOME</a>
+      <a>hello@lumierehome.com.au</a>
+      <a>1300 LUMIERE</a>
       <a>Instagram</a>
       <a data-en="WeChat" data-zh="&#24494;&#20449;">WeChat</a>
     </div>
   </div>
   <div class="ftbot">
-    <span>2026 Cozy Home. All rights reserved. ABN 00 000 000 000</span>
+    <span>2026 Lumière Home. All rights reserved. ABN 00 000 000 000</span>
     <span data-en="Rates via Open Exchange Rates" data-zh="&#27719;&#29575;&#65306;Open Exchange Rates">Rates via Open Exchange Rates</span>
   </div>
 </footer>
@@ -464,7 +464,7 @@ const P=[
   {id:16,en:{name:"Bed Runner & Cushion Set",desc:"Decorative runner with 2 matching cushion covers."},zh:{name:"床旗抛枝套装",desc:"装饰床旗加2个配套抛枝套。"},cat:"sheets",price:55.95,badge:"New"},
 ];
 let lang=localStorage.getItem("chl")||"en",cur="AUD",rate=4.75,rSrc="est",cCat="all";
-let cart=JSON.parse(localStorage.getItem("ch6_cart")||"[]");
+let cart=JSON.parse(localStorage.getItem("lh1_cart")||"[]");
 
 function setLang(l){
   lang=l;localStorage.setItem("chl",l);
@@ -507,7 +507,7 @@ function addC(id){
   if(ex)ex.qty++;else cart.push({id:p.id,en:p.en.name,zh:p.zh.name,price:p.price,qty:1});
   saveC();toast(T[lang].add(p[lang].name));renderCart();
 }
-function saveC(){localStorage.setItem("ch6_cart",JSON.stringify(cart));document.getElementById("cartCount").textContent=cart.reduce((s,i)=>s+i.qty,0);}
+function saveC(){localStorage.setItem("lh1_cart",JSON.stringify(cart));document.getElementById("cartCount").textContent=cart.reduce((s,i)=>s+i.qty,0);}
 function renderCart(){
   const el=document.getElementById("sbi"),ft=document.getElementById("sbf");
   if(!cart.length){el.innerHTML=`<div class="emp">${T[lang].empty}</div>`;ft.style.display="none";return;}
@@ -561,7 +561,7 @@ function initStripe() {
         fontSize: '15px',
         color: '#333333',
         '::placeholder': { color: '#aaaaaa' },
-        iconColor: '#b07d62'
+        iconColor: '#c9a84c'
       },
       invalid: { color: '#e05252', iconColor: '#e05252' }
     }
@@ -607,7 +607,7 @@ function placeOrder(e) {
   const pc  = document.querySelector('input[name=pc]:checked')?.value || 'AUD';
 
   const order = {
-    orderId:   'CH-' + Date.now(),
+    orderId:   'LH-' + Date.now(),
     timestamp: new Date().toISOString(),
     customer: {
       name:    document.getElementById('fn').value,
