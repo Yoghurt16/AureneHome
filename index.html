@@ -15,8 +15,8 @@ a{text-decoration:none;color:inherit;}
 .pill button.on{background:var(--a);color:#fff;}
 .vsep{width:1px;height:14px;background:var(--bd);}
 nav{background:#fff;position:sticky;top:0;z-index:100;border-bottom:1px solid var(--bd);}
-.ni{max-width:1200px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:66px;}
-.logo{display:flex;align-items:center;}.logo img{height:46px;width:auto;object-fit:contain;max-width:160px;}@media(max-width:768px){.logo img{height:36px;max-width:130px;}}@media(max-width:480px){.logo img{height:30px;max-width:110px;}}
+.ni{max-width:1200px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:88px;}
+.logo{display:flex;align-items:center;}.logo img{height:78px;width:auto;object-fit:contain;max-width:240px;}@media(max-width:768px){.logo img{height:60px;max-width:190px;}}@media(max-width:480px){.logo img{height:50px;max-width:160px;}}
 .logo b{font-weight:700;color:var(--a);}
 .nl{display:flex;gap:28px;font-size:.78rem;letter-spacing:.8px;text-transform:uppercase;}
 .nl a{color:var(--mu);cursor:pointer;transition:color var(--tr);}
@@ -27,7 +27,10 @@ nav{background:#fff;position:sticky;top:0;z-index:100;border-bottom:1px solid va
 .cc{background:var(--a);color:#fff;border-radius:50%;width:17px;height:17px;font-size:.6rem;display:flex;align-items:center;justify-content:center;font-weight:700;}
 .hb{display:none;flex-direction:column;gap:5px;cursor:pointer;}
 .hb span{width:22px;height:1.5px;background:var(--p);border-radius:2px;}
-.hero{background:linear-gradient(160deg,#f9f6f2 0%,#f0ebe3 100%);padding:100px 32px;text-align:center;}
+.hero{position:relative;overflow:hidden;padding:100px 32px;text-align:center;background:linear-gradient(180deg,#eee8dd 0%,#f2ece3 100%);min-height:480px;}
+.hero>*:not(#heroCanvas){position:relative;z-index:2;}
+#heroCanvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;}
+
 .htag{font-size:.68rem;letter-spacing:4px;text-transform:uppercase;color:var(--a);margin-bottom:16px;}
 .hero h1{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:300;color:var(--p);line-height:1.12;margin-bottom:16px;letter-spacing:-1.5px;}
 .hero h1 b{font-weight:700;}
@@ -135,7 +138,7 @@ footer{background:var(--soft);border-top:1px solid var(--bd);padding:50px 32px 2
 @media(max-width:900px){.ft{grid-template-columns:1fr 1fr;}}
 @media(max-width:768px){
   .ni{padding:0 16px;}
-  .nl{display:none;position:absolute;top:66px;left:0;right:0;background:#fff;flex-direction:column;padding:13px 20px;gap:13px;border-bottom:1px solid var(--bd);z-index:99;}
+  .nl{display:none;position:absolute;top:88px;left:0;right:0;background:#fff;flex-direction:column;padding:13px 20px;gap:13px;border-bottom:1px solid var(--bd);z-index:99;}
   .nl.on{display:flex;} .hb{display:flex;}
   .ubar{padding:5px 10px;gap:6px;}
   #rl{display:none;}
@@ -256,8 +259,6 @@ footer{background:var(--soft);border-top:1px solid var(--bd);padding:50px 32px 2
 </style><script src="https://js.stripe.com/v3/"></script>
 </head><body>
 <div class="ubar">
-  <span id="rl">Loading rate...</span>
-  <div class="vsep"></div>
   <div class="pill">
     <button class="on" id="bAUD" onclick="setCur('AUD')">AUD</button>
     <button id="bCNY" onclick="setCur('CNY')">CNY</button>
@@ -271,7 +272,7 @@ footer{background:var(--soft);border-top:1px solid var(--bd);padding:50px 32px 2
 
 <nav>
   <div class="ni">
-    <div class="logo"><img src="aurene-logo.png" alt="Aurène Home"/></div>
+    <div class="logo"><img src="aurene-logo-trimmed.png" alt="Aurène Home"/></div>
     <div class="nl" id="nl">
       <a onclick="goTo('shop')"  data-en="Shop" data-zh="&#21830;&#22478;">Shop</a>
       <a onclick="goTo('cats')"  data-en="Categories" data-zh="&#20998;&#31867;">Categories</a>
@@ -291,14 +292,14 @@ footer{background:var(--soft);border-top:1px solid var(--bd);padding:50px 32px 2
 </nav>
 
 <section class="hero">
+  <canvas id="heroCanvas"></canvas>
   <div class="htag" data-en="Premium Bedroom Collection" data-zh="&#39640;&#21697;&#36136;&#21381;&#23460;&#31995;&#21015;">Premium Bedroom Collection</div>
-  <h1 data-en="Sleep Better,<br/><b>Live Beautifully</b>" data-zh="&#30561;&#24471;&#26356;&#22909;&#65292;<br/><b>&#29983;&#27963;&#26356;&#33292;&#36827;</b>">Sleep Better,<br/><b>Live Beautifully</b></h1>
+  <h1 data-en="Sleep Better,<br/><b>Live Comfortably</b>" data-zh="&#30561;&#24471;&#26356;&#22909;&#65292;<br/><b>&#23613;&#20139;&#33298;&#36866;</b>">Sleep Better,<br/><b>Live Comfortably</b></h1>
   <p data-en="Thoughtfully crafted sheets, blankets, pillows and manchester for every home." data-zh="&#31934;&#24515;&#35774;&#35745;&#30340;&#24202;&#21333;&#12289;&#27629;&#23376;&#12289;&#26410;&#22836;&#21450;&#21381;&#23460;&#29992;&#21697;&#65292;&#36866;&#21512;&#27599;&#20491;&#23478;&#24237;&#12002;">Thoughtfully crafted sheets, blankets, pillows and manchester for every home.</p>
   <div class="hbtns">
     <button class="bp" onclick="goTo('shop')" data-en="Shop Now" data-zh="&#31435;&#21363;&#36141;&#36141;">Shop Now</button>
     <button class="bs" onclick="goTo('cats')" data-en="Browse Collection" data-zh="&#27993;&#35272;&#31995;&#21015;">Browse Collection</button>
-  </div>
-</section>
+  </div></section>
 
 <div class="trust">
   <div class="tri">
@@ -327,7 +328,7 @@ footer{background:var(--soft);border-top:1px solid var(--bd);padding:50px 32px 2
 <footer id="foot">
   <div class="ft">
     <div class="ftb">
-      <div class="logo"><img src="aurene-logo.png" alt="Aurène Home" style="height:36px;"/></div>
+      <div class="logo"><img src="aurene-logo-trimmed.png" alt="Aurène Home" style="height:44px;"/></div>
       <p data-en="Premium bedroom manchester for every home. Shipping Australia-wide." data-zh="&#36866;&#21512;&#27599;&#20491;&#23478;&#24237;&#30340;&#20248;&#36136;&#21381;&#23460;&#29992;&#21697;&#12002;&#28500;&#22823;&#21033;&#20122;&#20840;&#22269;&#37197;&#36865;&#12002;">Premium bedroom manchester. Ships Australia-wide.</p>
     </div>
     <div class="fc"><h4 data-en="Shop" data-zh="&#21830;&#22478;">Shop</h4>
@@ -484,7 +485,8 @@ async function fetchRate(){
   if(cr>0){rate=cr;rSrc="cached";}setRL(today);
 }
 function setRL(dt){
-  document.getElementById("rl").textContent="1 AUD = ¥"+rate.toFixed(4)+" CNY ("+rSrc+" · "+dt.slice(0,10)+")";
+  const rlEl=document.getElementById("rl");
+  if(rlEl) rlEl.textContent="1 AUD = "+rate.toFixed(4)+" CNY ("+rSrc+" "+dt.slice(0,10)+")";
   renderP(cCat);renderCart();
 }
 function cny(a){return(a*rate).toFixed(2);}
@@ -827,4 +829,202 @@ function pdAddToCart(){
     </div>
   </div>
 </div>
+
+<script>
+(function(){
+  const canvas = document.getElementById('heroCanvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H;
+  // Measure size immediately so feathers/glows never spawn at NaN (0,0)
+  (function(){ const r0 = canvas.parentElement.getBoundingClientRect(); W = canvas.width = r0.width; H = canvas.height = r0.height; })();
+
+  function resize(){
+    const rect = canvas.parentElement.getBoundingClientRect();
+    W = canvas.width = rect.width;
+    H = canvas.height = rect.height;
+    initGlow();
+  }
+
+  // === SOFT GOLDEN GLOW ORBS (modern depth, replaces flat grey clouds) ===
+  let glows = [];
+  function initGlow(){
+    glows = [];
+    for(let i = 0; i < 6; i++){
+      glows.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: 120 + Math.random() * 180,
+        dx: (Math.random() - 0.5) * 0.15,
+        dy: (Math.random() - 0.5) * 0.08,
+        opacity: 0.05 + Math.random() * 0.07,
+      });
+    }
+  }
+  function drawGlow(g){
+    ctx.save();
+    ctx.globalAlpha = g.opacity;
+    const grad = ctx.createRadialGradient(g.x, g.y, 0, g.x, g.y, g.r);
+    grad.addColorStop(0, 'rgba(201,168,76,1)');
+    grad.addColorStop(1, 'rgba(201,168,76,0)');
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(g.x, g.y, g.r, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+  function moveGlow(){
+    for(let g of glows){
+      g.x += g.dx; g.y += g.dy;
+      if(g.x < -g.r) g.x = W + g.r;
+      if(g.x > W + g.r) g.x = -g.r;
+      if(g.y < -g.r) g.y = H + g.r;
+      if(g.y > H + g.r) g.y = -g.r;
+    }
+  }
+
+  // === WIND SYSTEM (gentle random gusts) ===
+  let windX = 0, windY = 0;
+  let targetWindX = 0, targetWindY = 0;
+  function updateWind(){
+    targetWindX = (Math.random() - 0.5) * 2.2;
+    targetWindY = (Math.random() - 0.5) * 0.6;
+    setTimeout(updateWind, 2500 + Math.random() * 3500);
+  }
+  updateWind();
+
+  // === SOFT COTTON / CLOUD PUFFS ===
+  const feathers = [];
+  const FEATHER_COUNT = 14;
+  function createFeather(randomY){
+    const scale = 30 + Math.random() * 34; // overall puff size 30-64px
+    // Build a cluster of overlapping circles -> soft cotton-ball / cloud silhouette
+    const numBlobs = 6 + Math.floor(Math.random() * 4); // 6-9 lobes
+    const blobs = [];
+    for(let i = 0; i < numBlobs; i++){
+      const ang = (i / numBlobs) * Math.PI * 2 + Math.random() * 0.5;
+      const dist = scale * (0.28 + Math.random() * 0.4);
+      blobs.push({
+        ox: Math.cos(ang) * dist,
+        oy: Math.sin(ang) * dist * 0.75,
+        r: scale * (0.42 + Math.random() * 0.4),
+        op: 0.55 + Math.random() * 0.35,
+      });
+    }
+    // Central core blob for a denser middle
+    blobs.push({ ox: 0, oy: 0, r: scale * 0.62, op: 0.8 });
+
+    return {
+      x: Math.random() * W,
+      y: randomY ? Math.random() * H : -100 - Math.random() * 150,
+      scale: scale,
+      blobs: blobs,
+      rotation: Math.random() * Math.PI * 2,
+      spin: (Math.random() - 0.5) * 0.006, // very gentle tumble
+      vx: (Math.random() - 0.5) * 0.25,
+      vy: 0.1 + Math.random() * 0.22,
+      phase: Math.random() * Math.PI * 2,
+      phaseSpeed: 0.006 + Math.random() * 0.012,
+      windResponse: 0.3 + Math.random() * 0.6,
+      opacity: 0.5 + Math.random() * 0.4,
+      gustTimer: 60 + Math.random() * 180,
+      warmth: Math.random(), // 0 = pure white, 1 = soft cream/gold tint
+    };
+  }
+  for(let i = 0; i < FEATHER_COUNT; i++){
+    feathers.push(createFeather(true));
+  }
+
+  function puffColor(f, alphaMul){
+    // Blend pure soft white toward a gentle warm cream (never grey, never gold-heavy)
+    const r = Math.round(255 - 6 * f.warmth);
+    const g = Math.round(252 - 12 * f.warmth);
+    const b = Math.round(248 - 30 * f.warmth);
+    return 'rgba(' + r + ',' + g + ',' + b + ',' + alphaMul + ')';
+  }
+
+  function drawFeather(f){
+    ctx.save();
+    ctx.translate(f.x, f.y);
+    ctx.rotate(f.rotation);
+    ctx.globalAlpha = f.opacity;
+
+    for(let b of f.blobs){
+      const grad = ctx.createRadialGradient(b.ox, b.oy, 0, b.ox, b.oy, b.r);
+      grad.addColorStop(0, puffColor(f, b.op));
+      grad.addColorStop(0.65, puffColor(f, b.op * 0.55));
+      grad.addColorStop(1, puffColor(f, 0));
+      ctx.beginPath();
+      ctx.fillStyle = grad;
+      ctx.arc(b.ox, b.oy, b.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // gentle golden-edge rim light for warmth against the cream backdrop
+    ctx.beginPath();
+    ctx.arc(0, 0, f.scale * 0.7, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(201,168,76,0.06)';
+    ctx.lineWidth = f.scale * 0.5;
+    ctx.stroke();
+
+    ctx.restore();
+  }
+
+  function moveFeathers(){
+    for(let f of feathers){
+      // Occasional random gust: organic, non-uniform drift
+      f.gustTimer--;
+      if(f.gustTimer <= 0){
+        f.vx += (Math.random() - 0.5) * 0.4;
+        f.gustTimer = 90 + Math.random() * 200;
+      }
+      f.vx += (windX * f.windResponse - f.vx) * 0.01;
+      f.vy += (windY * 0.2 - (f.vy - 0.16)) * 0.006;
+      f.vy = Math.max(0.06, Math.min(0.4, f.vy));
+      f.vx = Math.max(-0.8, Math.min(0.8, f.vx));
+
+      f.phase += f.phaseSpeed;
+      f.rotation += f.spin;
+
+      f.x += f.vx + Math.sin(f.phase) * 0.4;
+      f.y += f.vy + Math.cos(f.phase * 0.6) * 0.15;
+
+      // Reset when off screen (any edge)
+      if(f.y > H + 100 || f.x > W + 100 || f.x < -100){
+        f.y = -100 - Math.random() * 80;
+        f.x = Math.random() * W;
+        f.vx = (Math.random() - 0.5) * 0.25;
+        f.vy = 0.1 + Math.random() * 0.22;
+        f.phase = Math.random() * Math.PI * 2;
+      }
+      if(f.y < -160){
+        f.y = -100;
+        f.vy = 0.1;
+      }
+    }
+  }
+
+  // === MAIN LOOP ===
+  function animate(){
+    ctx.clearRect(0, 0, W, H);
+
+    // Smooth wind transition
+    windX += (targetWindX - windX) * 0.006;
+    windY += (targetWindY - windY) * 0.006;
+
+    // Soft golden glow orbs (background depth)
+    moveGlow();
+    for(let g of glows) drawGlow(g);
+
+    // Rotating, randomly floating feathers
+    moveFeathers();
+    for(let f of feathers) drawFeather(f);
+
+    requestAnimationFrame(animate);
+  }
+
+  resize();
+  animate();
+})();
+</script>
 </body></html>
